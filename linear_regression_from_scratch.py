@@ -8,18 +8,11 @@ y_train = np.array([45, 60, 40, 80, 120, 100])
 
 def compute_cost(x, y, w, b) :
     # number of training examples
-    m = x.shape[0];
-
-    cost_sum = 0
-
-    for i in range(m) : 
-        # model function
-        f_wb = w*x[i] + b
-
-        cost = (f_wb - y[i])**2
-
-        cost_sum = cost_sum + cost
-
+    m = x.shape[0]
+    # model function
+    f_wb = w*x + b
+    cost = (f_wb - y)**2
+    cost_sum =np.sum(cost)
     final_cost = (1 / (2 * m)) * cost_sum 
 
     return final_cost
@@ -33,23 +26,19 @@ def gradient_descent(x, y) :
 
     # Partial derivative of jwb by w
     def derivative_w(x,y,w,b,m):
-        sigma_sum=0
-        for i in range(m) :
-            # model function
-            f_wb = w*x[i] + b
-            sum_formula = (f_wb - y[i])*x[i]
-            sigma_sum = sigma_sum + sum_formula
+        # model function
+        f_wb = w*x + b
+        sum_formula = (f_wb - y)*x
+        sigma_sum = np.sum(sum_formula)
         derivative_w = sigma_sum/m
         return derivative_w
     
     # Partial derivative of jwb by b
     def derivative_b(x,y,w,b,m):
-        sigma_sum=0
-        for i in range(m) :
-            # model function
-            f_wb = w*x[i] + b
-            sum_formula = (f_wb - y[i])
-            sigma_sum = sigma_sum + sum_formula
+        # model function
+        f_wb = w*x + b
+        sum_formula = (f_wb - y)
+        sigma_sum = np.sum(sum_formula)
         derivative_b = sigma_sum/m
         return derivative_b
 
