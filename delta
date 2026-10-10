@@ -1,8 +1,0 @@
-for j in range (50, 101) :
-    n = j
-    for i in range(2, n):
-        
-        r = n%i
-        if r == 0: break
-    if r !=0 : print(j)
-
